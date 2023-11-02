@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 
 // take yarrrml as input and return triples
 app.post('/', (req, res) => {
-    console.log(req.body)
     console.log(req.body.yarrrml)
     const y2r = new Yarrrml();
     const yarrrml_query = req.body.yarrrml;
@@ -49,17 +48,15 @@ app.post('/', (req, res) => {
         writer.addQuads(triples);
 
 
+        if (y2r.getLogger().has('error')) {
+            return res.status(400).send(y2r.getLogger().getAll());
+        }
+
         writer.end(async (error, result) => {
             Logger.log(result);
             return res.send(result);
 
         });
-
-
-        if (y2r.getLogger().has('error')) {
-            return res.status(400).send(y2r.getLogger().getAll());
-        }
-        return res.send(triples.join('\r\n'));
     }
     return res.status(422).send();
 })

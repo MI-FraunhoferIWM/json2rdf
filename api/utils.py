@@ -40,10 +40,3 @@ def to_rml(data):
     # rml = g.serialize(format="ttl")
 
     return response_text
-
-
-def rml_mapper(payload):
-    url = "http://localhost:4000/execute"
-
-    response = request("POST", url=url, json=payload)
-    return response
