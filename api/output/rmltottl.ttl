@@ -1,0 +1,46 @@
+@prefix ns1: <http://w3id.org/rml/> .
+@prefix ns2: <http://www.w3.org/ns/r2rml#> .
+@prefix ns3: <http://rdfs.org/ns/void#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://mapping.example.com/rules_000> a ns3:Dataset ;
+    ns3:exampleResource <http://mapping.example.com/map_person_000> .
+
+<http://mapping.example.com/map_person_000> a ns2:TriplesMap ;
+    rdfs:label "person" ;
+    ns1:logicalSource <http://mapping.example.com/source_000> ;
+    ns2:predicateObjectMap <http://mapping.example.com/pom_000>,
+        <http://mapping.example.com/pom_001> ;
+    ns2:subjectMap <http://mapping.example.com/s_000> .
+
+<http://mapping.example.com/om_000> a ns2:ObjectMap ;
+    ns2:constant "http://xmlns.com/foaf/0.1/Person" ;
+    ns2:termType ns2:IRI .
+
+<http://mapping.example.com/om_001> a ns2:ObjectMap ;
+    ns1:reference "firstname" ;
+    ns2:termType ns2:Literal .
+
+<http://mapping.example.com/pm_000> a ns2:PredicateMap ;
+    ns2:constant rdf:type .
+
+<http://mapping.example.com/pm_001> a ns2:PredicateMap ;
+    ns2:constant <http://example.com/name> .
+
+<http://mapping.example.com/pom_000> a ns2:PredicateObjectMap ;
+    ns2:objectMap <http://mapping.example.com/om_000> ;
+    ns2:predicateMap <http://mapping.example.com/pm_000> .
+
+<http://mapping.example.com/pom_001> a ns2:PredicateObjectMap ;
+    ns2:objectMap <http://mapping.example.com/om_001> ;
+    ns2:predicateMap <http://mapping.example.com/pm_001> .
+
+<http://mapping.example.com/s_000> a ns2:SubjectMap ;
+    ns2:template "http://example.com/{firstname}" .
+
+<http://mapping.example.com/source_000> a ns1:LogicalSource ;
+    ns1:iterator "$.persons[*]" ;
+    ns1:referenceFormulation <http://semweb.mmlab.be/ns/ql#JSONPath> ;
+    ns1:source "data.json" .
+
