@@ -1,61 +1,48 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status, Response
 import json
 import requests
-from utils import read_input, write_output
+from converters import yarrrml_to_rml, rml_mapper
+from utils import get_url_content
+from pydantic import BaseModel, AnyUrl
+from rdflib import Graph
 
 app = FastAPI()
 
 
-def to_rml(mapping_data):
-    response = requests.post(
-        "http://localhost" + ":" + "3001", data={"yarrrml": mapping_data}
-    )
-
-    if (response.status_code == 200):
-        response_text = response.text
-    else:
-        print("Data is not processed")
-        exit()
-
-    write_output('output1.rml', response_text)
-    return response_text
+class Mapping(BaseModel):
+    mapping_url: AnyUrl
 
 
-def rml_mapper(payload):
-    url = "http://localhost:4000/execute"
-
-    response = requests.post("http://localhost" + ":" +
-                             '4000' + "/execute", json=payload).text
-    return response
+class MappingAndData(BaseModel):
+    mapping_url: AnyUrl
+    data_url: AnyUrl
 
 
-@app.get("/api/yarrrmltorml")
-def yarrml_to_rml():
-    yaarrml_file_data = read_input("mapping.yaml")
-    rml = to_rml(yaarrml_file_data)
-    data = read_input("data.json")
-    payload = {
-        "rml": rml,
-        "sources": {
-            "data.json": data
-        }
-    }
-
-    resposne = rml_mapper(payload)
-    return resposne
+@app.post("/api/url/yarrrmltorml")
+def test(yarrrml: Mapping, reposne: Response):
+    mapping_content = get_url_content(yarrrml.mapping_url).content
+    rml = yarrrml_to_rml(mapping_content)
+    if (rml == None):
+        reposne.status_code = 422
+        return "Data not processed by yarrrml parser"
+    return rml
 
 
-@app.get("/api/tordf")
-def tordf():
-    yaarrml_file_data = read_input("mapping.yaml")
-    rml = to_rml(yaarrml_file_data)
-    data = read_input("data.json")
-    payload = {
-        "rml": rml,
-        "sources": {
-            "data.json": data
-        }
-    }
+@app.post("/api/url/tordf")
+def test(mapping_and_data: MappingAndData, reposne: Response):
+    mapping_content = get_url_content(mapping_and_data.mapping_url).content
+    data_content = get_url_content(mapping_and_data.data_url).text
 
-    resposne = rml_mapper(payload)
-    return resposne
+    rml = yarrrml_to_rml(mapping_content)
+    if (rml == None):
+        reposne.status_code = 422
+        return "Data not processed by yarrrml parser"
+
+    response = rml_mapper(rml ,data_content )
+    json_response = json.loads(response)
+    knowledge_graph = json_response["output"]
+    g = Graph()
+    g.parse(data=knowledge_graph , format="n3")
+    knowledge_graph = g.serialize(format="turtle")
+    print(knowledge_graph)
+    return knowledge_graph
