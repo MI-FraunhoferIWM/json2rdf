@@ -1,11 +1,13 @@
 from fastapi import FastAPI, Response, UploadFile
-from utils import yarrrml_to_rml, rml_mapper, response_to_ttl ,get_url_content
-from models.request_models import Mapping , MappingAndData , MappingAndDataStr
+from utils import yarrrml_to_rml, rml_mapper, response_to_ttl, get_url_content
+from models.request_models import Mapping, MappingAndData, MappingAndDataStr
 app = FastAPI(title="Json2rdf")
+
 
 @app.post("/api/url/yarrrmltorml")
 def yarrml_to_rml(yarrrml: Mapping, reposne: Response):
     mapping_content = get_url_content(yarrrml.mapping_url).content
+    print(mapping_content)
     rml = yarrrml_to_rml(mapping_content)
     if (rml == None):
         reposne.status_code = 422

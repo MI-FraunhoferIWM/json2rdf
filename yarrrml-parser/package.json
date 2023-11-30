@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node ./bin/app.ts",
+    "start": "node ./bin/app.js",
     "dev": "ts-node ./src/app.ts"
   }
 }
