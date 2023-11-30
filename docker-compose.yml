@@ -6,6 +6,8 @@ services:
     build: ./yarrrml-parser
     expose:
       - ${PARSER_PORT}
+    ports:
+      - ${PARSER_PORT}:${PARSER_PORT}
     restart: always
     networks:
       - json2rdf_net
