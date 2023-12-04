@@ -10,7 +10,7 @@ def get_url_content(url):
 
 def yarrrml_to_rml(mapping_data):
     response = requests.post(
-        "http://localhost" + ":" + "3001", data={"yarrrml": mapping_data}
+        "http://yarrrml-parser" + ":" + "3001", data={"yarrrml": mapping_data}
     )
 
     print(response.text)
@@ -32,7 +32,7 @@ def rml_mapper(rml, data_content):
             "data.json": data_content
         }
     }
-    url = "http://localhost:4000/execute"
+    url = "http://rmlmapper:4000/execute"
 
     response = requests.post(url, json=payload)
     return response.text
