@@ -6,8 +6,6 @@ services:
     build: ./yarrrml-parser
     expose:
       - ${PARSER_PORT}
-    ports:
-      - ${PARSER_PORT}:${PARSER_PORT}
     restart: always
     networks:
       - json2rdf_net
@@ -19,8 +17,6 @@ services:
     build: ./rmlmapper-webapi
     expose:
       - ${MAPPER_PORT}
-    ports:
-      - ${MAPPER_PORT}:${MAPPER_PORT}
     restart: always
     networks:
       - json2rdf_net
@@ -29,7 +25,7 @@ services:
     container_name: json2rdf
     build: ./api
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${APP_PORT}:${CONVERTER_PORT}
     restart: always
     networks:
       - json2rdf_net
