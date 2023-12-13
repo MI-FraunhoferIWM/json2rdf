@@ -10,14 +10,14 @@ const N3 = require('n3');
 const Logger = require('@rmlio/yarrrml-parser/lib/logger');
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // take yarrrml as input and return triples
 app.post('/', (req, res) => {
-    console.log(req.body.yarrrml)
+    //console.log(req.body.yarrrml)
     const y2r = new Yarrrml();
     const yarrrml_query = req.body.yarrrml;
     if (yarrrml_query) {

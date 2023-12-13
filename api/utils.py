@@ -1,6 +1,7 @@
 import requests
 from rdflib import Graph
 import json
+import os
 
 
 def get_url_content(url):
@@ -9,19 +10,14 @@ def get_url_content(url):
 
 
 def yarrrml_to_rml(mapping_data):
+
+    parser_url = os.environ.get("parser_url" , "http://localhost"+":"+"3001")
+
     response = requests.post(
-        "http://yarrrml-parser" + ":" + "3001", data={"yarrrml": mapping_data}
+        parser_url, data={"yarrrml": mapping_data}
     )
 
-    print(response.text)
-
-    if (response.status_code == 200):
-        response = response
-    else:
-        print("Data not processed")
-        return
-
-    return response.text
+    return response.text , response.status_code
 
 
 def rml_mapper(rml, data_content):
@@ -32,17 +28,19 @@ def rml_mapper(rml, data_content):
             "data.json": data_content
         }
     }
-    url = "http://rmlmapper:4000/execute"
 
-    response = requests.post(url, json=payload)
-    return response.text
+    mapper_url = os.environ.get("mapper_url" , "http://localhost"+":"+"4000")
+
+    response = requests.post(mapper_url +"/execute", json=payload)
+    return response.text , response.status_code
 
 
 def response_to_ttl(response):
     json_response = json.loads(response)
     knowledge_graph = json_response["output"]
-    print(knowledge_graph)
     g = Graph()
     g.parse(data=knowledge_graph, format="nt")
     knowledge_graph = g.serialize(format="n3")
+    print(knowledge_graph)
+
     return knowledge_graph

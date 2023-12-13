@@ -22,10 +22,13 @@ services:
       - json2rdf_net
 
   json2rdf:
+    environment:
+      - parser_url=http://yarrrml-parser:${PARSER_PORT}
+      - mapper_url=http://rmlmapper:${MAPPER_PORT}
     container_name: json2rdf
     build: ./api
     ports:
-      - ${APP_PORT}:${CONVERTER_PORT}
+      - ${CONV_PORT}:${API_PORT}
     restart: always
     networks:
       - json2rdf_net
