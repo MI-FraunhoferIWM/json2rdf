@@ -1,4 +1,4 @@
-# Json2RDF
+# Json2Rdf
 
 An application for converting JSON files into RDF data.
 
