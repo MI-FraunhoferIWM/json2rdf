@@ -1,6 +1,6 @@
 # Json2Rdf
 
-An application for converting JSON files into RDF data.
+An application for generating RDF representation of data in JSON format.
 
 ## Installation
 
