@@ -4,11 +4,11 @@
 
 #### Step 1
 - Create .env file similar to .env_example for defining ports
-  Note: Mapper port cannot be changed it should be 4000 
+  Note: Mapper port cannot be changed it should be 4000
 
 #### Step 2
 
-- Docker build and run 
+- Docker build and run
 ```
     docker compose build --no-cache
     docker up

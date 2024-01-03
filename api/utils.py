@@ -1,7 +1,8 @@
-import requests
-from rdflib import Graph
 import json
 import os
+
+import requests
+from rdflib import Graph
 
 
 def get_url_content(url):
@@ -10,29 +11,27 @@ def get_url_content(url):
 
 
 def yarrrml_to_rml(mapping_data):
-
-    parser_url = os.environ.get("parser_url" , "http://localhost"+":"+"3001")
-
-    response = requests.post(
-        parser_url, data={"yarrrml": mapping_data}
+    print("1", flush=True)
+    parser_url = os.environ.get(
+        "parser_url", "http://localhost" + ":" + "3001"
     )
 
-    return response.text , response.status_code
+    response = requests.post(parser_url, data={"yarrrml": mapping_data})
+    print("2", flush=True)
+
+    return response.text, response.status_code
 
 
 def rml_mapper(rml, data_content):
+    payload = {"rml": rml, "sources": {"data.json": data_content}}
 
-    payload = {
-        "rml": rml,
-        "sources": {
-            "data.json": data_content
-        }
-    }
+    mapper_url = os.environ.get(
+        "mapper_url", "http://localhost" + ":" + "4000"
+    )
 
-    mapper_url = os.environ.get("mapper_url" , "http://localhost"+":"+"4000")
-
-    response = requests.post(mapper_url +"/execute", json=payload)
-    return response.text , response.status_code
+    response = requests.post(mapper_url + "/execute", json=payload)
+    response.raise_for_status()
+    return response.text, response.status_code
 
 
 def response_to_ttl(response):
