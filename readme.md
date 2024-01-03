@@ -18,4 +18,6 @@
 
 Visit - http://localhost:{CONV_PORT}/docs for available endpoints and swagger docs
 
-** [https://github.com/Mat-O-Lab/RDFConverter](https://github.com/Mat-O-Lab/RDFConverter) ***
+### Contributions
+
+** [https://github.com/Mat-O-Lab/RDFConverter](https://github.com/Mat-O-Lab/RDFConverter) **
