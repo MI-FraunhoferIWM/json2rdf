@@ -28,7 +28,6 @@ def rml_mapper(rml, data_content):
     )
 
     response = requests.post(mapper_url + "/execute", json=payload)
-    response.raise_for_status()
     return response.text, response.status_code
 
 
