@@ -11,13 +11,11 @@ def get_url_content(url):
 
 
 def yarrrml_to_rml(mapping_data):
-    print("1", flush=True)
     parser_url = os.environ.get(
         "parser_url", "http://localhost" + ":" + "3001"
     )
 
     response = requests.post(parser_url, data={"yarrrml": mapping_data})
-    print("2", flush=True)
 
     return response.text, response.status_code
 
