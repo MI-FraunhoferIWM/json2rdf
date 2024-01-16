@@ -7,7 +7,6 @@ app = FastAPI(title="Json2rdf")
 
 @app.post("/api/url/yarrrmltorml")
 def yarrml_to_rml(yarrrml: Mapping, response: Response):
-    print("yarrml_to_rml", flush=True)
     mapping_content = get_url_content(yarrrml.mapping_url).content
     rml, response_code = yarrrml_to_rml(mapping_content)
     response.status_code = response_code
@@ -18,10 +17,8 @@ def yarrml_to_rml(yarrrml: Mapping, response: Response):
 
 @app.post("/api/url/tordf")
 def to_rdf(mapping_and_data: MappingAndData, response: Response):
-    print("to_rdf", flush=True)
     mapping_content = get_url_content(mapping_and_data.mapping_url).content
     data_content = get_url_content(mapping_and_data.data_url).text
-    print("data_content", data_content, flush=True)
     rml, response_code = yarrrml_to_rml(mapping_content)
     response.status_code = response_code
     if response_code != 200:
@@ -56,12 +53,10 @@ async def file_to_rdf(
     data_content = data_content.decode()
 
     rml, response_code = yarrrml_to_rml(mapping_content)
-    print("RML", rml, flush=True)
     response.status_code = response_code
     if response_code != 200:
         return {"error": "Data not processed by Yarrrml parser"}
 
-    print("data_content", data_content, flush=True)
     mapped_rdf, response_code = rml_mapper(rml, data_content)
     response.status_code = response_code
 
