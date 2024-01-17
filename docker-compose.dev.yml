@@ -1,0 +1,39 @@
+services:
+  yarrrml-parser:
+    container_name: yarrrml-parser
+    environment:
+      - PORT=${PARSER_PORT}
+    build: ./yarrrml-parser
+    expose:
+      - ${PARSER_PORT}
+    restart: always
+    networks:
+      - json2rdf_net
+
+  rmlmapper:
+    environment:
+      - PORT=${MAPPER_PORT}
+    container_name: rmlmapper
+    build: ./rmlmapper-webapi
+    expose:
+      - ${MAPPER_PORT}
+    restart: always
+    networks:
+      - json2rdf_net
+
+  json2rdf:
+    environment:
+      - parser_url=http://yarrrml-parser:${PARSER_PORT}
+      - mapper_url=http://rmlmapper:${MAPPER_PORT}
+    container_name: json2rdf
+    build: ./api
+    ports:
+      - ${CONV_PORT}:${API_PORT}
+    restart: always
+    networks:
+      - json2rdf_net
+
+networks:
+  json2rdf_net:
+    name: json2rdf_net
+    driver: bridge
