@@ -2,7 +2,8 @@ import os
 import sys
 
 from fastapi.testclient import TestClient
-#import requests
+
+# import requests
 
 parent_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(parent_dir)
@@ -20,6 +21,7 @@ def test_yarrrml_parser_url():
         "http://localhost:5004/api/url/yarrrmltorml", json=json_data
     )
     assert response.status_code == 200
+
 
 def test_mapper_url():
     json_data = {
