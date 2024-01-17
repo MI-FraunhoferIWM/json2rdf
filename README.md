@@ -17,3 +17,6 @@ Build and run the docker images:
 ```
 
 Go to `http://<your-ip-address>:{JSON2RDF_PORT}/docs`.
+
+## Contributions
+[https://github.com/Mat-O-Lab/RDFConverter]
