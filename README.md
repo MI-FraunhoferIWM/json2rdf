@@ -20,8 +20,6 @@ Build and run the docker images:
     docker compose up --build
 ```
 
-Go to `http://<your-ip-address>:{JSON2RDF_PORT}/docs`.
-
 ### Development mode
 
 Build and run docker by running the following command:
@@ -29,6 +27,10 @@ Build and run docker by running the following command:
 ```
     docker compose -f docker-compose.dev.yml up --build
 ```
+
+## Usage
+
+Go to `http://<your-ip-address>:{JSON2RDF_PORT}/docs`.
 
 ## Contributions
 https://github.com/Mat-O-Lab/RDFConverter
