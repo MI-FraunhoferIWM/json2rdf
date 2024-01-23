@@ -1,31 +1,31 @@
 services:
   yarrrml-parser:
     environment:
-      - PORT=${PARSER_PORT}
+      - PORT=3001
     image: ghcr.io/mi-fraunhoferiwm/yarrrml-parser:latest
     expose:
-      - ${PARSER_PORT}
+      - 3001
     restart: always
     networks:
       - json2rdf_net
 
   rmlmapper:
     environment:
-      - PORT=${MAPPER_PORT}
+      - PORT=4000
     image: ghcr.io/mi-fraunhoferiwm/rmlmapper:latest
     expose:
-      - ${MAPPER_PORT}
+      - 4000
     restart: always
     networks:
       - json2rdf_net
 
   json2rdf:
     environment:
-      - parser_url=http://yarrrml-parser:${PARSER_PORT}
-      - mapper_url=http://rmlmapper:${MAPPER_PORT}
+      - parser_url=http://yarrrml-parser:3001
+      - mapper_url=http://rmlmapper:4000
     image: ghcr.io/mi-fraunhoferiwm/json2rdf:latest
     ports:
-      - ${CONV_PORT}:${API_PORT}
+      - ${JSON2RDF_PORT}:5000
     restart: always
     networks:
       - json2rdf_net
