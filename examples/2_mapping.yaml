@@ -1,0 +1,36 @@
+prefixes:
+ ex: "http://example.com/"
+ person: "http://example.org/person"
+ animal: "http://example.org/animals"
+ 
+mappings:
+  person:
+    sources:
+      - access: data.json
+        referenceFormulation: jsonpath
+        iterator: "$.persons[*]"
+    s: ex:$(name)
+    po:
+      - [a, person:Person]
+      - [person:name, $(name)]
+      - [person:age, $(age)]
+      - [person:gender, $(gender)]
+      - p: person:ownsAnimal
+        o:
+          mapping: dog
+          condition:
+            function: equal
+            parameters: 
+              - [str1, $(ownsAnimal), s]
+              - [str2, $(name), o]
+      
+      
+  dog:
+    sources:
+      - access: data.json
+        referenceFormulation: jsonpath
+        iterator: "$.dogs[*]"
+    s: ex:$(name)
+    po:
+      - [a, animal:Animal]
+      - [animal:name, $(name)]

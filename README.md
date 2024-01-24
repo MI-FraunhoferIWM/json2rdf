@@ -34,19 +34,7 @@ Go to `http://<your-ip-address>:{JSON2RDF_PORT}/docs`.
 
 ### API Usage examples
 
-#### 1. YARRRML to RML 
-
-```
-curl -X 'POST' \
-  'http://localhost:6001/api/url/yarrrmltorml' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_mapping.yaml"
-}'
-```
-
-#### 2. Json2Rdf
+#### 1. Json2Rdf
 
 ```
 curl -X 'POST' \
@@ -59,5 +47,20 @@ curl -X 'POST' \
 }'
 ```
 
-## Contributions
-https://github.com/Mat-O-Lab/RDFConverter
+#### 2. YARRRML to RML 
+
+```
+curl -X 'POST' \
+  'http://localhost:6001/api/url/yarrrmltorml' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_mapping.yaml"
+}'
+```
+
+
+
+## Acknowledgement
+
+This repository is adapted from https://github.com/Mat-O-Lab/RDFConverter .
