@@ -42,8 +42,8 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "data_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_data.json",
-  "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_mapping.yaml"
+  "data_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_data.json",
+  "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_mapping.yaml"
 }'
 ```
 
@@ -55,7 +55,7 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_mapping.yaml"
+  "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_mapping.yaml"
 }'
 ```
 
