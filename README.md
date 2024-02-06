@@ -28,6 +28,14 @@ Build and run docker by running the following command:
     docker compose -f docker-compose.dev.yml up --build
 ```
 
+## Publication
+
+Upon creation of new release in github , packages will be published by github actions.
+
+Check out the published packages: 
+https://github.com/orgs/MI-FraunhoferIWM/packages?repo_name=json2rdf
+
+
 ## Usage
 
 Go to `http://<your-ip-address>:{JSON2RDF_PORT}/docs`.
@@ -58,14 +66,6 @@ curl -X 'POST' \
   "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_mapping.yaml"
 }'
 ```
-
-## Publication
-
-Upon creation of new release in github , packages will be published by github actions.
-
-Check out the published packages: 
-https://github.com/orgs/MI-FraunhoferIWM/packages?repo_name=json2rdf
-
 
 ## Acknowledgement
 
