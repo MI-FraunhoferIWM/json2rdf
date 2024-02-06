@@ -59,6 +59,12 @@ curl -X 'POST' \
 }'
 ```
 
+## Publication
+
+Upon creation of new release in github , packages will be published by github actions.
+
+Check out the published packages: 
+https://github.com/orgs/MI-FraunhoferIWM/packages?repo_name=json2rdf
 
 
 ## Acknowledgement
