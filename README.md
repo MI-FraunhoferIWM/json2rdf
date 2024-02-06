@@ -47,7 +47,7 @@ curl -X 'POST' \
 }'
 ```
 
-#### 2. YARRRML to RML 
+#### 2. YARRRML to RML
 
 ```
 curl -X 'POST' \

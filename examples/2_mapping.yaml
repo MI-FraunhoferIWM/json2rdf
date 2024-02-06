@@ -2,7 +2,7 @@ prefixes:
  ex: "http://example.com/"
  person: "http://example.org/person"
  animal: "http://example.org/animals"
- 
+
 mappings:
   person:
     sources:
@@ -20,11 +20,11 @@ mappings:
           mapping: dog
           condition:
             function: equal
-            parameters: 
+            parameters:
               - [str1, $(ownsAnimal), s]
               - [str2, $(name), o]
-      
-      
+
+
   dog:
     sources:
       - access: data.json

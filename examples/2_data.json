@@ -1,20 +1,20 @@
 {
-    "persons": [
-        {
-            "name": "John",
-            "age": 26,
-            "gender": "Male",
-            "ownsAnimal": "Max"
-        }
-    ],
-    "dogs": [
-        {
-            "name": "Max",
-            "breed": "Husky"
-        },
-        {
-            "name": "Tommy",
-            "breed": "Pug"
-        }
-        ]
+  "dogs": [
+    {
+      "breed": "Husky",
+      "name": "Max"
+    },
+    {
+      "breed": "Pug",
+      "name": "Tommy"
+    }
+  ],
+  "persons": [
+    {
+      "age": 26,
+      "gender": "Male",
+      "name": "John",
+      "ownsAnimal": "Max"
+    }
+  ]
 }

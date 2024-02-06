@@ -7,7 +7,7 @@ class Mapping(BaseModel):
         "json_schema_extra": {
             "examples": [
                 {
-                    "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_mapping.yaml"
+                    "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_mapping.yaml"
                 }
             ]
         }
@@ -21,8 +21,8 @@ class MappingAndData(BaseModel):
         "json_schema_extra": {
             "examples": [
                 {
-                    "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_mapping.yaml",
-                    "data_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf_data/main/1_data.json",
+                    "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_mapping.yaml",
+                    "data_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_data.json",
                 }
             ]
         }
