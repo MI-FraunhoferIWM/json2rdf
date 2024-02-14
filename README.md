@@ -17,7 +17,7 @@ Optionally, edit the app port that in defined in the [`.env`](./.env) file under
 
 Build and run the docker images:
 ```
-    docker compose up --build
+    docker compose up -d
 ```
 
 ### Development mode
