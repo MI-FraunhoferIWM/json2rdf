@@ -17,7 +17,7 @@ Optionally, edit the app port that in defined in the [`.env`](./.env) file under
 
 Build and run the docker images:
 ```
-    docker compose up --build
+    docker compose up -d
 ```
 
 ### Development mode
@@ -27,6 +27,14 @@ Build and run docker by running the following command:
 ```
     docker compose -f docker-compose.dev.yml up --build
 ```
+
+## Publication
+
+Upon creation of new release in github , packages will be published by github actions.
+
+Check out the published packages: 
+https://github.com/orgs/MI-FraunhoferIWM/packages?repo_name=json2rdf
+
 
 ## Usage
 
@@ -47,7 +55,7 @@ curl -X 'POST' \
 }'
 ```
 
-#### 2. YARRRML to RML 
+#### 2. YARRRML to RML
 
 ```
 curl -X 'POST' \
@@ -58,8 +66,6 @@ curl -X 'POST' \
   "mapping_url": "https://raw.githubusercontent.com/MI-FraunhoferIWM/json2rdf/main/examples/1_mapping.yaml"
 }'
 ```
-
-
 
 ## Acknowledgement
 
