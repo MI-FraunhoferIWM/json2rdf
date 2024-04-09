@@ -35,8 +35,7 @@ def response_to_ttl(response):
     json_response = json.loads(response)
     knowledge_graph = json_response["output"]
     g = Graph()
-    g.parse(data=knowledge_graph, format="nt")
-    knowledge_graph = g.serialize(format="n3")
-    print(knowledge_graph)
-
+    g.parse(data=knowledge_graph)
+    knowledge_graph = g.serialize(format="turtle")
+    print(knowledge_graph, flush=True)
     return knowledge_graph

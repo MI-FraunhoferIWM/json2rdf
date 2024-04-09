@@ -18,6 +18,7 @@ jobs:
           - dockerfile: ./api/Dockerfile
             image: ghcr.io/MI-FraunhoferIWM/json2rdf
             context: ./api
+            target: production
           - dockerfile: ./yarrrml-parser/Dockerfile
             image: ghcr.io/MI-FraunhoferIWM/yarrrml-parser
             context: ./yarrrml-parser

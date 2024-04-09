@@ -21,5 +21,10 @@ ENV PYTHONUNBUFFERED 1
 ################# DEVELOPMENT ####################################
 FROM base as development
 
+ENTRYPOINT ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
 
-ENTRYPOINT ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000", "--workers", "6","--proxy-headers", "--reload"]
+
+################# DEVELOPMENT ####################################
+FROM base as production
+
+ENTRYPOINT ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
